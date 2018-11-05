@@ -1,0 +1,108 @@
+\documentclass[a4paper]{report}
+\title{Content Pack System Documentation}
+\author{Piotr Paszko}
+\date{2018}
+
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{indentfirst}
+\usepackage{graphicx}
+\usepackage{float}
+\lstdefinestyle{sharpc}{language=[Sharp]C, frame=lr, rulecolor=\color{blue!80!black}}
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+
+\chapter{Introduction}
+\section{CPS General Description}
+Content Pack System (CPS) is a universal system for external resources support (i.e. game modding). System is based on "content packs" - an archive file containing resource and CPS files. CPS offers programmer API for reading content packs and loading resource files.
+
+\section{Content pack}
+Content Pack is a zip archive with *.cpack file extension. Content pack contains a pack information file, element information files and resource files.
+
+\subsection{Pack information file}
+Pack information file contains basic information about content pack formatted in XML. File have to be named exactly "Content Pack.xml". File have to be located directly inside pack archive.
+
+Information contained:
+\begin{enumerate}
+\item Content pack name.
+\item Id (formatted in domain name).
+\item Version of content pack.
+\item Version of CPS content pack is compatible.
+\item Author of content pack.
+\end{enumerate}
+
+Example file source:
+\begin{lstlisting}[language=XML]
+<?xml version="1.0" encoding="utf-8"?>
+<ContentPack>
+  <Name>name</Name>
+  <Id>name.domain.com</Id>
+  <Version>v 1.0</Version>
+  <CPSVersion>cpsv 1.0</CPSVersion>
+  <Author>author</Author>
+</ContentPack>
+\end{lstlisting}
+
+\subsection{Element information file}
+Element information file contains information about a resource file with the same name. Data is formatted in XML. File extension is *.ceif. File can be located anywhere in content pack archive structure.
+
+Information contained:
+\begin{enumerate}
+\item Resource name for displaying in application.
+\item Id (formatted as subdomain).
+\item Type of resource.
+\end{enumerate}
+
+Example file source:
+\begin{lstlisting}[language=XML]
+<?xml version="1.0" encoding="utf-8"?>
+<ContentPackElement>
+  <Name>name</Name>
+  <Id>id</Id>
+  <Type>image</Type>
+</ContentPackElement>
+\end{lstlisting}
+
+\subsection{Resource file}
+Resource file is a file, that is going to be used in application. Resource file have to have same name as information file describing it. Resource file also have to be at same directory as it own information file. See
+
+\begin{figure}[H]
+  \includegraphics[width=\linewidth]{{"figures/content pack structure example"}.jpg}
+  \caption{Content Pack structure example.}
+  \label{fig:Content Pack structure example}
+\end{figure}
+
+\section{CPS operating principle}
+The cps operation is divided into three different phases:
+\begin{enumerate}
+\item Reading content packs.
+\item Managing content packs.
+\item Loading resources.
+\end{enumerate}
+
+\begin{figure}[H]
+  \includegraphics[width=\linewidth]{{"figures/cps operation phases"}.jpg}
+  \caption{CPS operation phases.}
+  \label{fig:CPS operation phase}
+\end{figure}
+
+\subsection{Reading content packs phase}
+In this phase CPS reads content pack structure and all information files, and creates it own data structure presenting content pack content. In this phase programmer gets direct access to content pack objects in API. This phase should be executed in application preparing phase (for example a first loading screen in games).
+
+\subsection{Reading content packs phase}
+This phase is not performed by CPS. In this phase programmers can manage content packs and CPS reading phase warnings via API. That phase is crucial in the error handling mechanism of CPS. This phase should be executed after changes in resource packs (i.a. after reading and loading content packs phases).
+
+\subsection{Loading resources phase}
+In this phase CPS loads chosen resource and gives programmers direct access to it.
+
+\chapter{API Documentation}
+Need to be write after tests.
+
+\chapter{Using examples}
+Need to be write after tests.
+
+\end{document}
