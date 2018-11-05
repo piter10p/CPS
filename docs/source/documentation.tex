@@ -99,6 +99,24 @@ This phase is not performed by CPS. In this phase programmers can manage content
 \subsection{Loading resources phase}
 In this phase CPS loads chosen resource and gives programmers direct access to it.
 
+\section{Versioning}
+CPS uses this versioning system:
+
+major.minor.development stage.build
+
+\begin{enumerate}
+\item Major - major version number.
+\item Minor - minor version number.
+\item Development Stage - describes development stage of current minor version. Values meaning:
+\begin{enumerate}
+\item 0 - alpha,
+\item 1 - beta,
+\item 2 - release candidate,
+\item 3 - release version.
+\end{enumerate}
+\item Build - build version number.
+\end{enumerate}
+
 \chapter{API Documentation}
 Need to be write after tests.
 
