@@ -12,6 +12,6 @@ namespace CPS
         public string Name;
         public string Id;
         public string Type;
-        public ZipArchiveEntry zipEntry;
+        public ZipArchiveEntry targetFileZipEntry;
     }
 }

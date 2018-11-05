@@ -20,7 +20,7 @@ namespace CPS
             {
                 OpenDocument(entry);
 
-                elementData.zipEntry = GetContentFile(entry, zipArchive);
+                elementData.targetFileZipEntry = GetContentFile(entry, zipArchive);
 
                 XmlNode root = xmlDocument.GetElementsByTagName("ContentPackElement")[0];
                 elementData.Name = root.SelectSingleNode("Name").InnerText;
@@ -53,14 +53,31 @@ namespace CPS
         {
             try
             {
-                string nameWithoutExtension = entry.FullName.Split(' ')[0];
+                string nameWithoutExtension = entry.Name.Split('.')[0];
 
-                return zipArchive.GetEntry(nameWithoutExtension);
+                foreach(ZipArchiveEntry targetEntry in zipArchive.Entries)
+                {
+                    string targetNameWithoutExtension = targetEntry.Name.Split('.')[0];
+
+                    if (targetNameWithoutExtension == nameWithoutExtension && IsFileNotAnInformationFile(targetEntry.Name))
+                        return targetEntry;
+                }
+
+                throw new Exception("Content file not exists.");
             }
             catch (Exception e)
             {
                 throw new Exception("Problem with finding content file entry.", e);
             }
+        }
+
+        private bool IsFileNotAnInformationFile(string fileName)
+        {
+            string extension = fileName.Split('.')[1];
+
+            if (extension == FileExtensions.ElementInfoFile)
+                return false;
+            return true;
         }
     }
 }

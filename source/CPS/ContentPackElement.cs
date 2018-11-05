@@ -15,7 +15,7 @@ namespace CPS
         public string Type { get; private set; }
         public ContentPack Parent { get; private set; }
 
-        private ZipArchiveEntry zipEntry;
+        private ZipArchiveEntry targetFileZipEntry;
 
         /// <summary>
         /// Default constructor
@@ -29,14 +29,14 @@ namespace CPS
             this.Id = data.Id;
             this.Type = data.Type;
             this.Parent = parent;
-            this.zipEntry = data.zipEntry;
+            this.targetFileZipEntry = data.targetFileZipEntry;
         }
 
         public Stream OpenStream()
         {
             try
             {
-                return zipEntry.Open();
+                return targetFileZipEntry.Open();
             }
             catch (Exception e)
             {
