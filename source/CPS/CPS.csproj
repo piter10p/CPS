@@ -46,6 +46,9 @@
     <Compile Include="ContentPackData.cs" />
     <Compile Include="ContentPackElement.cs" />
     <Compile Include="ContentPackElementData.cs" />
+    <Compile Include="ContentPackReader.cs" />
+    <Compile Include="ElementInfoFileReader.cs" />
+    <Compile Include="FileExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
