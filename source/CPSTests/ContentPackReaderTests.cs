@@ -81,5 +81,53 @@ namespace CPS.Tests
                 Assert.Fail(e.Message);
             }
         }
+
+        [TestMethod()]
+        public void ReadContentPackBadElementInformationFileTest()
+        {
+            try
+            {
+                List<ContentPack> contentPacksList;
+                ContentPackReader contentPackReader = new ContentPackReader();
+                contentPacksList = contentPackReader.ReadContentPacks("Bad Element Info File Test");
+
+                //Reader result
+
+                Assert.IsTrue(contentPackReader.WarningsExists);
+                Assert.AreEqual(contentPacksList.Count, 0);
+
+                Warning warning = contentPackReader.NextWarning;
+                Assert.AreEqual("source.cpack", warning.ContentPackFileName);
+                Assert.IsFalse(contentPackReader.WarningsExists);
+            }
+            catch (Exception e)
+            {
+                Assert.Fail(e.Message);
+            }
+        }
+
+        [TestMethod()]
+        public void ReadContentPackNoResourceFileTest()
+        {
+            try
+            {
+                List<ContentPack> contentPacksList;
+                ContentPackReader contentPackReader = new ContentPackReader();
+                contentPacksList = contentPackReader.ReadContentPacks("No Resource File Test");
+
+                //Reader result
+
+                Assert.IsTrue(contentPackReader.WarningsExists);
+                Assert.AreEqual(contentPacksList.Count, 0);
+
+                Warning warning = contentPackReader.NextWarning;
+                Assert.AreEqual("source.cpack", warning.ContentPackFileName);
+                Assert.IsFalse(contentPackReader.WarningsExists);
+            }
+            catch (Exception e)
+            {
+                Assert.Fail(e.Message);
+            }
+        }
     }
 }
