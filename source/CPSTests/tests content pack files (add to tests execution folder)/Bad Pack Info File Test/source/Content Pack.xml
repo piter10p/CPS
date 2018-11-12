@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentPack>
+  <Name>name</Name>
+  <Id>name.domain.com</Id>
+  <Ver>v 1.0</Ver>
+  <CPSVersion>cpsv 1.0</CPSVersion>
+  <Author>author</Author>
+</ContentPack>
