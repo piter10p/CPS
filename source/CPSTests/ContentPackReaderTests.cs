@@ -57,5 +57,29 @@ namespace CPS.Tests
                 Assert.Fail(e.Message);
             }
         }
+
+        [TestMethod()]
+        public void ReadContentPackBadPackInformationFileTest()
+        {
+            try
+            {
+                List<ContentPack> contentPacksList;
+                ContentPackReader contentPackReader = new ContentPackReader();
+                contentPacksList = contentPackReader.ReadContentPacks("Bad Pack Info File Test");
+
+                //Reader result
+
+                Assert.IsTrue(contentPackReader.WarningsExists);
+                Assert.AreEqual(contentPacksList.Count, 0);
+
+                Warning warning = contentPackReader.NextWarning;
+                Assert.AreEqual("source.cpack", warning.ContentPackFileName);
+                Assert.IsFalse(contentPackReader.WarningsExists);
+            }
+            catch(Exception e)
+            {
+                Assert.Fail(e.Message);
+            }
+        }
     }
 }

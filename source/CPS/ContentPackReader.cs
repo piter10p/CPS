@@ -12,7 +12,7 @@ namespace CPS
     public class ContentPackReader
     {
         DirectoryInfo contentPackFolder;
-        Queue<Exception> warningsQueue = new Queue<Exception>();
+        Queue<Warning> warningsQueue = new Queue<Warning>();
 
         /// <summary>
         /// Creates a list of unloaded content packs.
@@ -34,7 +34,7 @@ namespace CPS
                     }
                     catch (Exception e)
                     {
-                        NewWarning(e);
+                        NewWarning(e, file.Name);
                     }
                 }
 
@@ -62,7 +62,7 @@ namespace CPS
         /// <summary>
         /// Reads next warning and deletes it from list.
         /// </summary>
-        public Exception NextWarning
+        public Warning NextWarning
         {
             get
             {
@@ -192,9 +192,10 @@ namespace CPS
             }
         }
 
-        private void NewWarning(Exception e)
+        private void NewWarning(Exception e, string contentPackFileName)
         {
-            warningsQueue.Enqueue(e);
+            Warning warning = new Warning(e, contentPackFileName);
+            warningsQueue.Enqueue(warning);
         }
     }
 }
