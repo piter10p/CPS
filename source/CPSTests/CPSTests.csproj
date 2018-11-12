@@ -55,9 +55,7 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
-    <Compile Include="ContentPackElementTests.cs" />
     <Compile Include="ContentPackReaderTests.cs" />
-    <Compile Include="ContentPackTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
