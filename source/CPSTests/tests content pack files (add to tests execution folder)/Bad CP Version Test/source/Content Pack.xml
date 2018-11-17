@@ -2,7 +2,7 @@
 <ContentPack>
   <Name>name</Name>
   <Id>name.domain.com</Id>
-  <Ver>v 1.0</Ver>
-  <CPVersion>0.1</CPVersion>
+  <Version>v 1.0</Version>
+  <CPVersion>0.0</CPVersion>
   <Author>author</Author>
 </ContentPack>

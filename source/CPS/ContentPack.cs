@@ -12,7 +12,7 @@ namespace CPS
         public string Id { get; private set; }
         public string Author { get; private set; }
         public string Version { get; private set; }
-        public string CPSVersion { get; private set; }
+        public string CPVersion { get; private set; }
 
         private List<ContentPackElement> elementsList = new List<ContentPackElement>();
 
@@ -34,7 +34,7 @@ namespace CPS
             this.Id = contentPackData.Id;
             this.Author = contentPackData.Author;
             this.Version = contentPackData.Version;
-            this.CPSVersion = contentPackData.CPSVersion;
+            this.CPVersion = contentPackData.CPVersion;
 
             CreateElements(contentPackData);
         }

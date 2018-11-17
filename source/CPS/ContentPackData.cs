@@ -12,7 +12,7 @@ namespace CPS
         public string Id;
         public string Version;
         public string Author;
-        public string CPSVersion;
+        public string CPVersion;
 
         public Queue<ContentPackElementData> Elements = new Queue<ContentPackElementData>();
     }

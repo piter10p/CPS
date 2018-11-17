@@ -3,6 +3,6 @@
   <Name>name</Name>
   <Id>name.domain.com</Id>
   <Version>v 1.0</Version>
-  <CPSVersion>cpsv 1.0</CPSVersion>
+  <CPVersion>0.1</CPVersion>
   <Author>author</Author>
 </ContentPack>

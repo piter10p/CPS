@@ -47,6 +47,7 @@
     <Compile Include="ContentPackElement.cs" />
     <Compile Include="ContentPackElementData.cs" />
     <Compile Include="ContentPackReader.cs" />
+    <Compile Include="CPVersion.cs" />
     <Compile Include="ElementInfoFileReader.cs" />
     <Compile Include="FileExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

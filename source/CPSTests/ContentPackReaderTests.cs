@@ -32,7 +32,7 @@ namespace CPS.Tests
                 Assert.AreEqual("name", contentPack.Name);
                 Assert.AreEqual("name.domain.com", contentPack.Id);
                 Assert.AreEqual("v 1.0", contentPack.Version);
-                Assert.AreEqual("cpsv 1.0", contentPack.CPSVersion);
+                Assert.AreEqual("0.1", contentPack.CPVersion);
                 Assert.AreEqual("author", contentPack.Author);
 
                 Assert.AreEqual(contentPack.GetElementsOfType("text").Count, 1);
@@ -114,6 +114,30 @@ namespace CPS.Tests
                 List<ContentPack> contentPacksList;
                 ContentPackReader contentPackReader = new ContentPackReader();
                 contentPacksList = contentPackReader.ReadContentPacks("No Resource File Test");
+
+                //Reader result
+
+                Assert.IsTrue(contentPackReader.WarningsExists);
+                Assert.AreEqual(contentPacksList.Count, 0);
+
+                Warning warning = contentPackReader.NextWarning;
+                Assert.AreEqual("source.cpack", warning.ContentPackFileName);
+                Assert.IsFalse(contentPackReader.WarningsExists);
+            }
+            catch (Exception e)
+            {
+                Assert.Fail(e.Message);
+            }
+        }
+
+        [TestMethod()]
+        public void ReadContentPackBadCPVersionTest()
+        {
+            try
+            {
+                List<ContentPack> contentPacksList;
+                ContentPackReader contentPackReader = new ContentPackReader();
+                contentPacksList = contentPackReader.ReadContentPacks("Bad CP Version Test");
 
                 //Reader result
 

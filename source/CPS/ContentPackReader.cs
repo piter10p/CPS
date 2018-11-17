@@ -90,6 +90,10 @@ namespace CPS
             {
                 ZipArchive zipArchive = OpenZipArchive(file);
                 ReadPackFile(zipArchive, contentPackData);
+
+                if (!IsContentPackVersionCompatible(contentPackData))
+                    throw new Exception("Content pack version is not compatible with current CPS version.");
+
                 ReadPackEntries(zipArchive, contentPackData);
             }
             catch (Exception e)
@@ -98,6 +102,12 @@ namespace CPS
             }
 
             return new ContentPack(contentPackData);
+        }
+
+        private bool IsContentPackVersionCompatible(ContentPackData contentPackData)
+        {
+            string packVersion = contentPackData.CPVersion;
+            return CPVersion.IsCompatible(packVersion);
         }
 
         private ZipArchive OpenZipArchive(FileInfo file)
@@ -131,8 +141,8 @@ namespace CPS
                 node = root.SelectSingleNode("Version");
                 contentPackData.Version = node.InnerText;
 
-                node = root.SelectSingleNode("CPSVersion");
-                contentPackData.CPSVersion = node.InnerText;
+                node = root.SelectSingleNode("CPVersion");
+                contentPackData.CPVersion = node.InnerText;
 
                 node = root.SelectSingleNode("Author");
                 contentPackData.Author = node.InnerText;

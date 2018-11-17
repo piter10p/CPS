@@ -31,7 +31,7 @@ Information contained:
 \item Content pack name.
 \item Id (formatted in domain name).
 \item Version of content pack.
-\item Version of CPS content pack is compatible.
+\item Version of Content Pack file, that content pack is created in.
 \item Author of content pack.
 \end{enumerate}
 
@@ -42,10 +42,13 @@ Example file source:
   <Name>name</Name>
   <Id>name.domain.com</Id>
   <Version>v 1.0</Version>
-  <CPSVersion>cpsv 1.0</CPSVersion>
+  <CPVersion>0.1</CPVersion>
   <Author>author</Author>
 </ContentPack>
 \end{lstlisting}
+
+\subsection{Content Pack file version}
+Content pack files have changed in many ways during CPS development. It has become a necessity to introduce version numbering. Current Content Pack file version is 0.1.
 
 \subsection{Element information file}
 Element information file contains information about a resource file with the same name. Data is formatted in XML. File extension is *.ceif. File can be located anywhere in content pack archive structure.
